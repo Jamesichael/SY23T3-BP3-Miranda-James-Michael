@@ -12,8 +12,10 @@ public:
 	virtual void start();
 	virtual void update();
 	virtual void draw();
+
 private:
 	// Scene where this object belongs to
 	Scene* parentScene;
+
 };
 
