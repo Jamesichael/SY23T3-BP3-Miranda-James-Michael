@@ -1,9 +1,19 @@
 #include "player.h"
-#include "draw.h"
+#include "Scene.h"
+#include "bullet.h"
+
+player::~player()
+{
+	for (int i = 0; i < Bullets.size(); i++)
+	{
+		delete Bullets[i];
+	}
+	Bullets.clear();
+}
 
 void player::start()
 {
-	texture = loadTexture("gfx/player.png");
+	playerTexture = loadTexture("gfx/player.png");
 
 	x = 100;
 	y = 330;
@@ -11,9 +21,14 @@ void player::start()
 	height = 0;
 	speed = 2;
 	speedUp = speed + 5;
+	reloadTime = 10;
+	currentReloadTime = 0;
+	reloadTimeG = 15;
+	currentReloadTimeG = 0;
 
-	SDL_QueryTexture(texture, NULL, NULL, &width ,&height);
+	SDL_QueryTexture(playerTexture, NULL, NULL, &width ,&height);
 
+	s0und = SoundManager::loadSound("sound/334227__jradcoolness__laser.ogg");
 }
 
 void player::update()
@@ -73,10 +88,62 @@ void player::update()
 	{
 		x -= speed;
 	}
+
+	if (currentReloadTime > 0)
+	{
+		currentReloadTime--;
+	}
+
+	if (app.keyboard[SDL_SCANCODE_F]  && currentReloadTime == 0)
+	{
+		SoundManager::playSound(s0und);
+		bullet* Bullet = new bullet(x + width / 2, y - 3 + height / 2, 1, 0, 10);
+		Bullets.push_back(Bullet);
+		getScene()->addGameObject(Bullet);
+		Bullet->start();
+
+		currentReloadTime = reloadTime;
+	}
+
+	if (currentReloadTimeG > 0)
+	{
+		currentReloadTimeG--;
+	}
+
+	if (app.keyboard[SDL_SCANCODE_G] && currentReloadTimeG == 0)
+	{
+		SoundManager::playSound(s0und);
+		bullet* twinBullet = new bullet(x + width / 6, y - 25 + height / 2, 1, 0, 10);
+		bullet* twinBullet2 = new bullet(x + width / 6, y + 15 + height / 2, 1, 0, 10);
+
+		Bullets.push_back(twinBullet);
+		Bullets.push_back(twinBullet2);
+
+		getScene()->addGameObject(twinBullet);
+		getScene()->addGameObject(twinBullet2);
+
+		twinBullet->start();
+		twinBullet2->start();
+
+		currentReloadTimeG = reloadTimeG;
+	}
+
+	for (int i = 0; i < Bullets.size(); i++)
+	{
+		if (Bullets[i]->getPositionX() > SCREEN_WIDTH)
+		{
+			bullet* bulletToErase = Bullets[i];
+			Bullets.erase(Bullets.begin() + i);
+			delete bulletToErase;
+
+			break;
+		}
+	}
+
 }
 
 void player::draw()
 {
-	blit(texture, x, y);
+	blit(playerTexture, x, y);
 
 }
