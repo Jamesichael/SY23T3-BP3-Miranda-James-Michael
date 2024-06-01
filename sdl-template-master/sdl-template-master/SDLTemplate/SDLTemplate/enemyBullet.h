@@ -3,12 +3,12 @@
 #include "common.h"
 #include "draw.h"
 
-class bullet : public GameObject
+class enemyBullet : public GameObject
 {
 public:
-	
-	bullet(float positionX, float positionY, float directionX ,float diractionY, float speed);
-	
+
+	enemyBullet(float positionX, float positionY, float directionX, float diractionY, float speed);
+
 	void start();
 	void update();
 	void draw();
@@ -29,5 +29,6 @@ private:
 	int speed;
 	float directionX;
 	float diractionY;
+
 };
 

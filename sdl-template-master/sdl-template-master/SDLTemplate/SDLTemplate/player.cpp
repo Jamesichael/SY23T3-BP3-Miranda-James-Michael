@@ -100,7 +100,6 @@ void player::update()
 		bullet* Bullet = new bullet(x + width / 2, y - 3 + height / 2, 1, 0, 10);
 		Bullets.push_back(Bullet);
 		getScene()->addGameObject(Bullet);
-		Bullet->start();
 
 		currentReloadTime = reloadTime;
 	}
@@ -122,9 +121,6 @@ void player::update()
 		getScene()->addGameObject(twinBullet);
 		getScene()->addGameObject(twinBullet2);
 
-		twinBullet->start();
-		twinBullet2->start();
-
 		currentReloadTimeG = reloadTimeG;
 	}
 
@@ -145,5 +141,26 @@ void player::update()
 void player::draw()
 {
 	blit(playerTexture, x, y);
-
 }
+
+int player::getPositionX()
+{
+	return x;
+}
+
+int player::getPositionY()
+{
+	return y;
+}
+
+int player::getWidth()
+{
+	return width;
+}
+
+int player::getHeight()
+{
+	return height;
+}
+
+

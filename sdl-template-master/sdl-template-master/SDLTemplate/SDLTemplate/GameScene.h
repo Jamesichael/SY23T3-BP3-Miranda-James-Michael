@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "GameObject.h"
 #include "player.h"
+#include "enemy.h"
 
 class GameScene : public Scene
 {
@@ -13,5 +14,7 @@ public:
 	void update();
 private:
 	player* player_1;
+	enemy* Enemy;
+
 };
 

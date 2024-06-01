@@ -3,16 +3,17 @@
 #include "common.h"
 #include "draw.h"
 #include "SoundManager.h"
-#include "bullet.h"
+#include "enemyBullet.h"
 #include "util.h"
 #include <vector>
+#include "player.h"
 
 using namespace std;
 
-class player : public GameObject
+class enemy : public GameObject
 {
 public:
-	~player();
+	~enemy();
 
 	void start();
 	void update();
@@ -23,24 +24,30 @@ public:
 	int getWidth();
 	int getHeight();
 
+	void setPlayerTarget(player* Player);
+
 private:
 
 	SDL_Texture* playerTexture;
 	Mix_Chunk* s0und;
+	player* playerTarget;
 
 	int x;
 	int y;
+	float direction_X;
+	float direction_Y;
+
 	int width;
 	int height;
-	int speed;
-	int speedUp;
 
+	int speed;
 	float reloadTime;
 	float currentReloadTime;
 
-	float reloadTimeG;
-	float currentReloadTimeG;
 
-	vector<bullet*> Bullets;
+	float directionChangeTime;
+	float currentDiractionChangeTime;
+
+	vector<enemyBullet*> enemyBullets;
 };
 

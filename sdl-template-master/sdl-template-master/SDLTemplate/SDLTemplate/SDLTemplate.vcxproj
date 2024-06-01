@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="draw.cpp" />
+    <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="enemyBullet.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="init.cpp" />
@@ -38,6 +40,8 @@
     <ClInclude Include="common.h" />
     <ClInclude Include="defs.h" />
     <ClInclude Include="draw.h" />
+    <ClInclude Include="enemy.h" />
+    <ClInclude Include="enemyBullet.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="init.h" />
