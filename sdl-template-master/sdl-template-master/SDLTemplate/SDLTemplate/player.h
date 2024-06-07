@@ -22,6 +22,9 @@ public:
 	int getPositionY();
 	int getWidth();
 	int getHeight();
+	bool getIsAlive();
+
+	void ifDead();
 
 private:
 
@@ -42,5 +45,6 @@ private:
 	float currentReloadTimeG;
 
 	vector<bullet*> Bullets;
+	bool isAlive;
 };
 

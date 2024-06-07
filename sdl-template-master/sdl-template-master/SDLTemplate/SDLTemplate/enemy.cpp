@@ -18,8 +18,6 @@ void enemy::start()
 
 	direction_X = -1;
 	direction_Y = 1;
-	x = 1300;
-	y = 400;
 	width = 0;
 	height = 0;
 	speed = 2;
@@ -63,9 +61,9 @@ void enemy::update()
 		calcSlope(playerTarget->getPositionX(), playerTarget->getPositionY(), x, y, &dX, &dY);
 
 		SoundManager::playSound(s0und);
-		enemyBullet* Bullet = new enemyBullet(x - width / 5, y - 1 + height / 2, dX, dY, 10);
-		getScene()->addGameObject(Bullet);
-		enemyBullets.push_back(Bullet);
+		bullet* enemyBullet = new bullet(x - width / 5, y - 1 + height / 2, dX, dY, 10, Side::ENEMY_SIDE);
+		getScene()->addGameObject(enemyBullet);
+		enemyBullets.push_back(enemyBullet);
 		currentReloadTime = reloadTime;
 	}
 
@@ -73,7 +71,7 @@ void enemy::update()
 	{
 		if (enemyBullets[i]->getPositionX() > SCREEN_WIDTH)
 		{
-			enemyBullet* bulletToErase = enemyBullets[i];
+			bullet* bulletToErase = enemyBullets[i];
 			enemyBullets.erase(enemyBullets.begin() + i);
 			delete bulletToErase;
 
@@ -110,4 +108,10 @@ int enemy::getHeight()
 void enemy::setPlayerTarget(player* Player)
 {
 	playerTarget = Player;
+}
+
+void enemy::setPosition(int _x, int _y)
+{
+	this->x = _x;
+	this->y = _y;
 }

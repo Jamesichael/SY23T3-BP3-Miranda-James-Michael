@@ -1,17 +1,25 @@
 #include "bullet.h"
 
-bullet::bullet(float positionX, float positionY, float directionX, float diractionY, float speed)
+bullet::bullet(float positionX, float positionY, float directionX, float diractionY, float speed, Side side)
 {
 	this->x = positionX;
 	this->y = positionY;
 	this->directionX = directionX;
 	this->diractionY = diractionY;
 	this->speed = speed;
+	this->side = side;
 }
 
 void bullet::start()
 {
-	bulletTexture = loadTexture("gfx/playerBullet.png");
+	if(side == Side::PLAYER_SIDE)
+	{
+		bulletTexture = loadTexture("gfx/playerBullet.png");
+	}
+	else if (side == Side::ENEMY_SIDE)
+	{
+		bulletTexture = loadTexture("gfx/alienBullet.png");
+	}
 
 	width = 0;
 	height = 0;
@@ -31,22 +39,27 @@ void bullet::draw()
 	blit(bulletTexture, x, y);
 }
 
-float bullet::getPositionX()
+int bullet::getPositionX()
 {
 	return x;
 }
 
-float bullet::getPositionY()
+int bullet::getPositionY()
 {
 	return y;
 }
 
-float bullet::getWidth()
+int bullet::getWidth()
 {
 	return width;
 }
 
-float bullet::getHeight()
+int bullet::getHeight()
 {
 	return height;
+}
+
+Side bullet::getSide()
+{
+	return side;
 }

@@ -25,6 +25,7 @@ void player::start()
 	currentReloadTime = 0;
 	reloadTimeG = 15;
 	currentReloadTimeG = 0;
+	isAlive = true;
 
 	SDL_QueryTexture(playerTexture, NULL, NULL, &width ,&height);
 
@@ -33,6 +34,19 @@ void player::start()
 
 void player::update()
 {
+	for (int i = 0; i < Bullets.size(); i++)
+	{
+		if (Bullets[i]->getPositionX() > SCREEN_WIDTH)
+		{
+			bullet* bulletToErase = Bullets[i];
+			Bullets.erase(Bullets.begin() + i);
+			delete bulletToErase;
+
+			break;
+		}
+	}
+
+	if (!isAlive)return;
 
 	if (app.keyboard[SDL_SCANCODE_W])
 	{
@@ -97,7 +111,7 @@ void player::update()
 	if (app.keyboard[SDL_SCANCODE_F]  && currentReloadTime == 0)
 	{
 		SoundManager::playSound(s0und);
-		bullet* Bullet = new bullet(x + width / 2, y - 3 + height / 2, 1, 0, 10);
+		bullet* Bullet = new bullet(x + width / 2, y - 3 + height / 2, 1, 0, 10, Side::PLAYER_SIDE);
 		Bullets.push_back(Bullet);
 		getScene()->addGameObject(Bullet);
 
@@ -112,8 +126,8 @@ void player::update()
 	if (app.keyboard[SDL_SCANCODE_G] && currentReloadTimeG == 0)
 	{
 		SoundManager::playSound(s0und);
-		bullet* twinBullet = new bullet(x + width / 6, y - 25 + height / 2, 1, 0, 10);
-		bullet* twinBullet2 = new bullet(x + width / 6, y + 15 + height / 2, 1, 0, 10);
+		bullet* twinBullet = new bullet(x + width / 6, y - 25 + height / 2, 1, 0, 10, Side::PLAYER_SIDE);
+		bullet* twinBullet2 = new bullet(x + width / 6, y + 15 + height / 2, 1, 0, 10, Side::PLAYER_SIDE);
 
 		Bullets.push_back(twinBullet);
 		Bullets.push_back(twinBullet2);
@@ -123,23 +137,12 @@ void player::update()
 
 		currentReloadTimeG = reloadTimeG;
 	}
-
-	for (int i = 0; i < Bullets.size(); i++)
-	{
-		if (Bullets[i]->getPositionX() > SCREEN_WIDTH)
-		{
-			bullet* bulletToErase = Bullets[i];
-			Bullets.erase(Bullets.begin() + i);
-			delete bulletToErase;
-
-			break;
-		}
-	}
-
 }
 
 void player::draw()
 {
+	if (!isAlive )return;
+
 	blit(playerTexture, x, y);
 }
 
@@ -161,6 +164,16 @@ int player::getWidth()
 int player::getHeight()
 {
 	return height;
+}
+
+bool player::getIsAlive()
+{
+	return isAlive;
+}
+
+void player::ifDead()
+{
+	isAlive = false;
 }
 
 

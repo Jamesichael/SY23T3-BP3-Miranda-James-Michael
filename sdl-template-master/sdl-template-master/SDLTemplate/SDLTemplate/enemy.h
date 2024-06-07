@@ -3,7 +3,7 @@
 #include "common.h"
 #include "draw.h"
 #include "SoundManager.h"
-#include "enemyBullet.h"
+#include "bullet.h"
 #include "util.h"
 #include <vector>
 #include "player.h"
@@ -25,6 +25,7 @@ public:
 	int getHeight();
 
 	void setPlayerTarget(player* Player);
+	void setPosition(int _x,int _y);
 
 private:
 
@@ -48,6 +49,6 @@ private:
 	float directionChangeTime;
 	float currentDiractionChangeTime;
 
-	vector<enemyBullet*> enemyBullets;
+	vector<bullet*> enemyBullets;
 };
 

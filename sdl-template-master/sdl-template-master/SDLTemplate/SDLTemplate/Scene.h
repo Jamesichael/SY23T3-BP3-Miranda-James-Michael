@@ -24,6 +24,7 @@ public:
 
 protected:
 	std::vector <GameObject*> objects;
+
 private:
 	bool hasStarted;
 	static Scene* activeScene;
