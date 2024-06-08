@@ -6,6 +6,7 @@
 #include "vector"
 #include "text.h"
 #include "draw.h"
+#include "backGround.h"
 
 using namespace std;
 
@@ -19,6 +20,7 @@ public:
 	void update();
 private:
 	player* player_1;
+	backGround* setGameBackground;
 
 	float spawnTime;
 	float currentSpawnTime;
@@ -31,7 +33,7 @@ private:
 
 	int score;
 
-	SDL_Texture* setGameBackground;
 	SDL_Texture* enemyDeath;
+	Mix_Chunk* deathSound;
 };
 

@@ -25,12 +25,17 @@ public:
 	int getHeight();
 
 	void setPlayerTarget(player* Player);
-	void setPosition(int _x,int _y);
+	void setPosition(int _x, int _y);
+	bool getEnemyIsAlive();
+	void ifDead();
 
 private:
 
-	SDL_Texture* playerTexture;
+	SDL_Texture* enemyTexture;
 	Mix_Chunk* s0und;
+	SDL_Texture* deathExplosion;
+	Mix_Chunk* deathSound;
+
 	player* playerTarget;
 
 	int x;
@@ -50,5 +55,8 @@ private:
 	float currentDiractionChangeTime;
 
 	vector<bullet*> enemyBullets;
+
+	bool enemyIsAlive;
+
 };
 

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="backGround.cpp" />
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="draw.cpp" />
     <ClCompile Include="enemy.cpp" />
@@ -35,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="app.h" />
+    <ClInclude Include="backGround.h" />
     <ClInclude Include="bullet.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="defs.h" />

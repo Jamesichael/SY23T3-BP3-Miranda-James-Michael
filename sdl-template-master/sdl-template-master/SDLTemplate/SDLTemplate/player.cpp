@@ -13,8 +13,6 @@ player::~player()
 
 void player::start()
 {
-	playerTexture = loadTexture("gfx/player.png");
-
 	x = 100;
 	y = 330;
 	width = 0;
@@ -27,8 +25,8 @@ void player::start()
 	currentReloadTimeG = 0;
 	isAlive = true;
 
+	playerTexture = loadTexture("gfx/player.png");
 	SDL_QueryTexture(playerTexture, NULL, NULL, &width ,&height);
-
 	s0und = SoundManager::loadSound("sound/334227__jradcoolness__laser.ogg");
 }
 
@@ -141,7 +139,7 @@ void player::update()
 
 void player::draw()
 {
-	if (!isAlive )return;
+	if (!isAlive ) return;
 
 	blit(playerTexture, x, y);
 }

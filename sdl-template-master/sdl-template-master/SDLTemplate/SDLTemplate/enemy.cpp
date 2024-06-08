@@ -14,8 +14,6 @@ enemy::~enemy()
 
 void enemy::start()
 {
-	playerTexture = loadTexture("gfx/enemy.png");
-
 	direction_X = -1;
 	direction_Y = 1;
 	width = 0;
@@ -26,14 +24,16 @@ void enemy::start()
 
 	directionChangeTime = (rand() % 100) + 100;
 	currentDiractionChangeTime = 0;
+	enemyIsAlive = true;
 
-	SDL_QueryTexture(playerTexture, NULL, NULL, &width, &height);
-
+	enemyTexture = loadTexture("gfx/enemy.png");
+	SDL_QueryTexture(enemyTexture, NULL, NULL, &width, &height);
 	s0und = SoundManager::loadSound("sound/334227__jradcoolness__laser.ogg");
 }
 
 void enemy::update()
 {
+
 	x += direction_X * speed;
 	y += direction_Y * speed;
 	
@@ -82,7 +82,9 @@ void enemy::update()
 
 void enemy::draw()
 {
-	blit(playerTexture, x, y);
+	blit(enemyTexture, x, y);
+
+	blit(deathExplosion, x, y);
 }
 
 int enemy::getPositionX()
@@ -115,3 +117,14 @@ void enemy::setPosition(int _x, int _y)
 	this->x = _x;
 	this->y = _y;
 }
+
+bool enemy::getEnemyIsAlive()
+{
+	return enemyIsAlive;
+}
+
+void enemy::ifDead()
+{
+	enemyIsAlive = false;
+}
+

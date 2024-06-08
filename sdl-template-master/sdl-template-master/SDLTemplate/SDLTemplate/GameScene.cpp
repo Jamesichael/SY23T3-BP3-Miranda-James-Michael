@@ -5,6 +5,9 @@ using namespace std;
 GameScene::GameScene()
 {
 	// Register and add game objects on constructor
+	setGameBackground = new backGround();
+	this->addGameObject(setGameBackground);
+
 	player_1 = new player();
 	this->addGameObject(player_1);
 
@@ -20,7 +23,7 @@ void GameScene::start()
 {
 	Scene::start();
 	// Initialize any scene logic here
-
+	
 	initFonts();
 
 	currentSpawnTime = 300;
@@ -35,8 +38,6 @@ void GameScene::start()
 void GameScene::draw()
 {
 	Scene::draw();
-
-	setGameBackground = loadTexture("gfx/background.png");
 
 	drawText(110,20,255,255,255,TEXT_CENTER,"POINTS: %01d", score);
 
@@ -61,13 +62,22 @@ void GameScene::spawnCheck()
 	}
 	if (currentSpawnTime <= 0)
 	{
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < 5; i++)
 		{
 			spawn();
 		}
 
 		currentSpawnTime = spawnTime;
 	}
+}
+
+void GameScene::spawn()
+{
+	enemy* Enemy = new enemy();
+	this->addGameObject(Enemy);
+	Enemy->setPlayerTarget(player_1);
+	Enemy->setPosition(1300, 300 + (rand() % 300));
+	spawnedEnemies.push_back(Enemy);
 }
 
 void GameScene::collisionCheck()
@@ -102,7 +112,6 @@ void GameScene::collisionCheck()
 
 					if (enemyCollision == 1)
 					{
-						enemyDeath = loadTexture("gfx/explosion.png");
 						despawn(currentEnemy);
 						score++;
 						break;
@@ -111,16 +120,6 @@ void GameScene::collisionCheck()
 			}
 		}
 	}
-}
-
-void GameScene::spawn()
-{
-	enemy* Enemy = new enemy();
-	this->addGameObject(Enemy);
-	Enemy->setPlayerTarget(player_1);
-
-	Enemy->setPosition(1300, 300 + (rand() % 300));
-	spawnedEnemies.push_back(Enemy);
 }
 
 void GameScene::despawn(enemy* _enemy)

@@ -22,8 +22,8 @@ public:
 	int getPositionY();
 	int getWidth();
 	int getHeight();
-	bool getIsAlive();
 
+	bool getIsAlive();
 	void ifDead();
 
 private:
