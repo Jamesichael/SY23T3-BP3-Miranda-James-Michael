@@ -62,7 +62,7 @@ void GameScene::spawnCheck()
 	}
 	if (currentSpawnTime <= 0)
 	{
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < 3; i++)
 		{
 			spawn();
 		}
@@ -76,7 +76,7 @@ void GameScene::spawn()
 	enemy* Enemy = new enemy();
 	this->addGameObject(Enemy);
 	Enemy->setPlayerTarget(player_1);
-	Enemy->setPosition(1300, 300 + (rand() % 300));
+	Enemy->setPosition(100 + (rand() % 600), 30);
 	spawnedEnemies.push_back(Enemy);
 }
 
@@ -112,6 +112,7 @@ void GameScene::collisionCheck()
 
 					if (enemyCollision == 1)
 					{
+
 						despawn(currentEnemy);
 						score++;
 						break;

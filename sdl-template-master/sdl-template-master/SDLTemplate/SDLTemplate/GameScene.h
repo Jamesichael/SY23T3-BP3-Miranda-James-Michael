@@ -32,8 +32,5 @@ private:
 	void despawn(enemy* _enemy);
 
 	int score;
-
-	SDL_Texture* enemyDeath;
-	Mix_Chunk* deathSound;
 };
 

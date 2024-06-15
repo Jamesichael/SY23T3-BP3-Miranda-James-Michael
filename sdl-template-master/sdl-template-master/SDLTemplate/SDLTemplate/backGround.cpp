@@ -19,10 +19,8 @@ void backGround::draw()
 {
 	blit(setGameBackground, 0, 0);
 	blit(setGameBackground, 500, 0);
-	blit(setGameBackground, 1000, 0);
 	blit(setGameBackground, 0, 500);
 	blit(setGameBackground, 500, 500);
-	blit(setGameBackground, 1000,500);
 }
 
 void backGround::setSize(int w, int h)

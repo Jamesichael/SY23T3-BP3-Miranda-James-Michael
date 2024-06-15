@@ -14,15 +14,16 @@ enemy::~enemy()
 
 void enemy::start()
 {
-	direction_X = -1;
+	direction_X = 1;
 	direction_Y = 1;
+
 	width = 0;
 	height = 0;
 	speed = 2;
 	reloadTime = 60;
 	currentReloadTime = 0;
 
-	directionChangeTime = (rand() % 100) + 100;
+	directionChangeTime = (rand() % 50) + 25;
 	currentDiractionChangeTime = 0;
 	enemyIsAlive = true;
 
@@ -44,7 +45,7 @@ void enemy::update()
 
 	if (currentDiractionChangeTime == 0) 
 	{	
-		direction_Y = -direction_Y;
+		direction_X = -direction_X;
 		currentDiractionChangeTime = directionChangeTime;
 	}
 
@@ -61,7 +62,7 @@ void enemy::update()
 		calcSlope(playerTarget->getPositionX(), playerTarget->getPositionY(), x, y, &dX, &dY);
 
 		SoundManager::playSound(s0und);
-		bullet* enemyBullet = new bullet(x - width / 5, y - 1 + height / 2, dX, dY, 10, Side::ENEMY_SIDE);
+		bullet* enemyBullet = new bullet(x - 2 + (width / 2), y +  + (height / 2), dX, dY, 10, Side::ENEMY_SIDE);
 		getScene()->addGameObject(enemyBullet);
 		enemyBullets.push_back(enemyBullet);
 		currentReloadTime = reloadTime;

@@ -13,8 +13,8 @@ player::~player()
 
 void player::start()
 {
-	x = 100;
-	y = 330;
+	x = SCREEN_WIDTH / 2;
+	y = 900;
 	width = 0;
 	height = 0;
 	speed = 2;
@@ -109,7 +109,7 @@ void player::update()
 	if (app.keyboard[SDL_SCANCODE_F]  && currentReloadTime == 0)
 	{
 		SoundManager::playSound(s0und);
-		bullet* Bullet = new bullet(x + width / 2, y - 3 + height / 2, 1, 0, 10, Side::PLAYER_SIDE);
+		bullet* Bullet = new bullet(x - 3 + (width / 2), y - 40 + (height / 2), 0, -1, 10, Side::PLAYER_SIDE);
 		Bullets.push_back(Bullet);
 		getScene()->addGameObject(Bullet);
 
@@ -124,8 +124,8 @@ void player::update()
 	if (app.keyboard[SDL_SCANCODE_G] && currentReloadTimeG == 0)
 	{
 		SoundManager::playSound(s0und);
-		bullet* twinBullet = new bullet(x + width / 6, y - 25 + height / 2, 1, 0, 10, Side::PLAYER_SIDE);
-		bullet* twinBullet2 = new bullet(x + width / 6, y + 15 + height / 2, 1, 0, 10, Side::PLAYER_SIDE);
+		bullet* twinBullet = new bullet(x - 10 + width / 6, y + height / 2, 0, -1, 10, Side::PLAYER_SIDE);
+		bullet* twinBullet2 = new bullet(x + 35 + width / 6, y + height / 2, 0, -1, 10, Side::PLAYER_SIDE);
 
 		Bullets.push_back(twinBullet);
 		Bullets.push_back(twinBullet2);
