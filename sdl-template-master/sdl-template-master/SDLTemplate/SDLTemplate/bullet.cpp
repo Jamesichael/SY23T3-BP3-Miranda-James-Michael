@@ -5,7 +5,7 @@ bullet::bullet(float positionX, float positionY, float directionX, float diracti
 	this->x = positionX;
 	this->y = positionY;
 	this->directionX = directionX;
-	this->diractionY = diractionY;
+	this->directionY = diractionY;
 	this->speed = speed;
 	this->side = side;
 }
@@ -30,7 +30,7 @@ void bullet::start()
 void bullet::update()
 {
 	x += directionX * speed;
-	y += diractionY * speed;
+	y += directionY * speed;
 
 }
 

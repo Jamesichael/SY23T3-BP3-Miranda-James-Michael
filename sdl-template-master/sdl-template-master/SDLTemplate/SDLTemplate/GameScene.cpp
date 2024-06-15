@@ -11,6 +11,9 @@ GameScene::GameScene()
 	player_1 = new player();
 	this->addGameObject(player_1);
 
+	spawnPowerUps = new powerUps();
+	this->addGameObject(spawnPowerUps);
+
 	score = 0;
 }
 

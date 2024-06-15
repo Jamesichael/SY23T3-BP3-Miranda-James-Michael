@@ -36,6 +36,6 @@ private:
 	int height;
 	int speed;
 	float directionX;
-	float diractionY;
+	float directionY;
 };
 

@@ -7,6 +7,7 @@
 #include "util.h"
 #include <vector>
 #include "player.h"
+#include "powerUps.h"
 
 using namespace std;
 
@@ -49,7 +50,6 @@ private:
 	int speed;
 	float reloadTime;
 	float currentReloadTime;
-
 
 	float directionChangeTime;
 	float currentDiractionChangeTime;

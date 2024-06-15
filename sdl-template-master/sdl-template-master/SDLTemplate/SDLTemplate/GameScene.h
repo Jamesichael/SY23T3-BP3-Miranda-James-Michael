@@ -7,6 +7,7 @@
 #include "text.h"
 #include "draw.h"
 #include "backGround.h"
+#include "powerUps.h"
 
 using namespace std;
 
@@ -21,6 +22,7 @@ public:
 private:
 	player* player_1;
 	backGround* setGameBackground;
+	powerUps* spawnPowerUps;
 
 	float spawnTime;
 	float currentSpawnTime;
