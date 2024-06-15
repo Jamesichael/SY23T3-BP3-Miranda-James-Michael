@@ -30,6 +30,9 @@ void enemy::start()
 	enemyTexture = loadTexture("gfx/enemy.png");
 	SDL_QueryTexture(enemyTexture, NULL, NULL, &width, &height);
 	s0und = SoundManager::loadSound("sound/334227__jradcoolness__laser.ogg");
+
+	deathExplosion = loadTexture("gfx/explosion.png");
+	SDL_QueryTexture(deathExplosion, NULL, NULL, &width, &height);
 }
 
 void enemy::update()
@@ -85,7 +88,7 @@ void enemy::draw()
 {
 	blit(enemyTexture, x, y);
 
-	blit(deathExplosion, x, y);
+	if (!enemyIsAlive) return blit(deathExplosion, x, y);
 }
 
 int enemy::getPositionX()

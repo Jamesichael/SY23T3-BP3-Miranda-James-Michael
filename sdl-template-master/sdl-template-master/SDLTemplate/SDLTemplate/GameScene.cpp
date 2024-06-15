@@ -66,7 +66,6 @@ void GameScene::spawnCheck()
 		{
 			spawn();
 		}
-
 		currentSpawnTime = spawnTime;
 	}
 }
@@ -112,7 +111,6 @@ void GameScene::collisionCheck()
 
 					if (enemyCollision == 1)
 					{
-
 						despawn(currentEnemy);
 						score++;
 						break;
@@ -138,6 +136,7 @@ void GameScene::despawn(enemy* _enemy)
 
 	if (index != -1)
 	{
+		_enemy->ifDead();
 		spawnedEnemies.erase(spawnedEnemies.begin() + index);
 		delete _enemy;
 	}

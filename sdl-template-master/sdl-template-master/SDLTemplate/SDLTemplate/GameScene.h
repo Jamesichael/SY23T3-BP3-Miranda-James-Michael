@@ -32,5 +32,6 @@ private:
 	void despawn(enemy* _enemy);
 
 	int score;
+
 };
 

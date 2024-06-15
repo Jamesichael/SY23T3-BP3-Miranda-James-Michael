@@ -14,7 +14,7 @@ player::~player()
 void player::start()
 {
 	x = SCREEN_WIDTH / 2;
-	y = 900;
+	y = 750;
 	width = 0;
 	height = 0;
 	speed = 2;
@@ -139,7 +139,7 @@ void player::update()
 
 void player::draw()
 {
-	if (!isAlive ) return;
+	if (!isAlive) return;
 
 	blit(playerTexture, x, y);
 }
