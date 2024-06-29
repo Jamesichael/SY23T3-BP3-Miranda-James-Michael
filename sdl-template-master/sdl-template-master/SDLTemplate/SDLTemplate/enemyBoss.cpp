@@ -1,6 +1,6 @@
-#include "enemy.h"
+#include "enemyBoss.h"
 
-enemy::~enemy()
+enemyBoss::~enemyBoss()
 {
 	for (int i = 0; i < enemyBullets.size(); i++)
 	{
@@ -9,10 +9,10 @@ enemy::~enemy()
 	enemyBullets.clear();
 }
 
-void enemy::start()
+void enemyBoss::start()
 {
 	direction_X = 1;
-	direction_Y = 1;
+	direction_Y = 0;
 
 	width = 0;
 	height = 0;
@@ -22,26 +22,27 @@ void enemy::start()
 
 	directionChangeTime = (rand() % 50) + 25;
 	currentDiractionChangeTime = 0;
-	enemyIsAlive = true;
+	bossIsAlive = true;
 
-	enemyTexture = loadTexture("gfx/enemy.png");
-	SDL_QueryTexture(enemyTexture, NULL, NULL, &width, &height);
+	bossTexture = loadTexture("gfx/enemy.png");
+	SDL_QueryTexture(bossTexture, NULL, NULL, &width, &height);
 	s0und = SoundManager::loadSound("sound/334227__jradcoolness__laser.ogg");
+
 }
 
-void enemy::update()
+void enemyBoss::update()
 {
 
 	x += direction_X * speed;
 	y += direction_Y * speed;
-	
+
 	if (currentDiractionChangeTime > 0)
 	{
 		currentDiractionChangeTime--;
 	}
 
-	if (currentDiractionChangeTime == 0) 
-	{	
+	if (currentDiractionChangeTime == 0)
+	{
 		direction_X = -direction_X;
 		currentDiractionChangeTime = directionChangeTime;
 	}
@@ -60,7 +61,7 @@ void enemy::update()
 		calcSlope(playerTarget->getPositionX(), playerTarget->getPositionY(), x, y, &dX, &dY);
 
 		SoundManager::playSound(s0und);
-		bullet* enemyBullet = new bullet(x - 2 + (width / 2), y +  + (height / 2), dX, dY, 10, Side::ENEMY_SIDE);
+		bullet* enemyBullet = new bullet(x - 2 + (width / 2), y + +(height / 2), dX, dY, 10, Side::ENEMY_SIDE);
 		getScene()->addGameObject(enemyBullet);
 		enemyBullets.push_back(enemyBullet);
 		currentReloadTime = reloadTime;
@@ -78,61 +79,57 @@ void enemy::update()
 		}
 	}
 
-	if (enemyIsAlive == false)
+	if (bossIsAlive == false)
 	{
 		deathExplosion = loadTexture("gfx/explosion.png");
 		SDL_QueryTexture(deathExplosion, NULL, NULL, &width, &height);
-
-		powerUps* power = new powerUps(this->getPositionX(), this->getPositionY(), 1, 1, 2);
-		getScene()->addGameObject(power);
 	}
 }
 
-void enemy::draw()
+void enemyBoss::draw()
 {
-	blit(enemyTexture, x, y);
+	blit(bossTexture, x, y);
 
 	blit(deathExplosion, x, y);
 }
 
-int enemy::getPositionX()
+int enemyBoss::getPositionX()
 {
 	return x;
 }
 
-int enemy::getPositionY()
+int enemyBoss::getPositionY()
 {
 	return y;
 }
 
-int enemy::getWidth()
+int enemyBoss::getWidth()
 {
 	return width;
 }
 
-int enemy::getHeight()
+int enemyBoss::getHeight()
 {
 	return height;
 }
 
-void enemy::setPlayerTarget(player* Player)
+void enemyBoss::setPlayerTarget(player* Player)
 {
 	playerTarget = Player;
 }
 
-void enemy::setPosition(int _x, int _y)
+void enemyBoss::setPosition(int _x, int _y)
 {
 	this->x = _x;
 	this->y = _y;
 }
 
-bool enemy::getEnemyIsAlive()
+bool enemyBoss::getEnemyIsAlive()
 {
-	return enemyIsAlive;
+	return bossIsAlive;
 }
 
-void enemy::ifDead()
+void enemyBoss::ifDead()
 {
-	enemyIsAlive = false;
+	bossIsAlive = false;
 }
-

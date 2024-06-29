@@ -11,9 +11,6 @@ GameScene::GameScene()
 	player_1 = new player();
 	this->addGameObject(player_1);
 
-	spawnPowerUps = new powerUps();
-	this->addGameObject(spawnPowerUps);
-
 	score = 0;
 }
 
@@ -55,6 +52,14 @@ void GameScene::update()
 	Scene::update();
 	spawnCheck();
 	collisionCheck();
+
+
+	if (score == 5)
+	{
+		enemyBoss* Boss = new enemyBoss();
+		this->addGameObject(Boss);
+		collisionCheck();
+	}
 }
 
 void GameScene::spawnCheck()

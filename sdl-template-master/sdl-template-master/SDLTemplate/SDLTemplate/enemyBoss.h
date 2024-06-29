@@ -7,14 +7,12 @@
 #include "util.h"
 #include <vector>
 #include "player.h"
-#include "powerUps.h"
 #include "scene.h"
-using namespace std;
 
-class enemy : public GameObject
+class enemyBoss : public GameObject
 {
 public:
-	~enemy();
+	~enemyBoss();
 
 	void start();
 	void update();
@@ -32,7 +30,7 @@ public:
 
 private:
 
-	SDL_Texture* enemyTexture;
+	SDL_Texture* bossTexture;
 	Mix_Chunk* s0und;
 	SDL_Texture* deathExplosion;
 	Mix_Chunk* deathSound;
@@ -56,7 +54,7 @@ private:
 
 	vector<bullet*> enemyBullets;
 
-	bool enemyIsAlive;
+	bool bossIsAlive;
 
 };
 

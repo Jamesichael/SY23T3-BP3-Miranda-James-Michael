@@ -1,12 +1,16 @@
 #include "powerUps.h"
 
+powerUps::powerUps(float positionX, float positionY, float directionX, float diractionY, float speed)
+{
+	this->x = positionX;
+	this->y = positionY;
+	this->direction_X = directionX;
+	this->direction_Y = diractionY;
+	this->speed = speed;
+}
+
 void powerUps::start()
 {
-	x = 60;
-	y = 200;
-	
-	direction_X = 1;
-	direction_Y = 1;
 
 	width = 0;
 	height = 0;
@@ -40,5 +44,25 @@ void powerUps::update()
 void powerUps::draw()
 {
 	blit(powerUpTexture, x, y);
+}
+
+int powerUps::getPositionX()
+{
+	return x;
+}
+
+int powerUps::getPositionY()
+{
+	return y;
+}
+
+int powerUps::getWidth()
+{
+	return width;
+}
+
+int powerUps::getHeight()
+{
+	return height;
 }
 

@@ -8,6 +8,7 @@
 #include "draw.h"
 #include "backGround.h"
 #include "powerUps.h"
+#include "enemyBoss.h"
 
 using namespace std;
 
