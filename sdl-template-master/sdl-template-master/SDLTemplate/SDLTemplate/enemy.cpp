@@ -130,7 +130,7 @@ void enemy::ifDead()
 {
 	enemyIsAlive = false;
 
-	powerUps* power = new powerUps(this->getPositionX(), this->getPositionY(), 1, 1, 2, Side::ENEMY_SIDE);
+	powerUps* power = new powerUps(this->getPositionX(), this->getPositionY(), 1, 1, 2);
 	getScene()->addGameObject(power);
 }
 

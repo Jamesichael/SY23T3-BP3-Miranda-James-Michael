@@ -19,12 +19,10 @@ public:
 	void start();
 	void update();
 	void draw();
-
 	int getPositionX();
 	int getPositionY();
 	int getWidth();
 	int getHeight();
-
 	void setPlayerTarget(player* Player);
 	void setPosition(int _x, int _y);
 	bool getEnemyIsAlive();
