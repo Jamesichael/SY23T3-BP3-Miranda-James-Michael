@@ -29,9 +29,6 @@ void enemyBoss::start()
 	SDL_QueryTexture(bossTexture, NULL, NULL, &width, &height);
 	s0und = SoundManager::loadSound("sound/334227__jradcoolness__laser.ogg");
 
-	deathExplosion = loadTexture("gfx/explosion.png");
-	SDL_QueryTexture(deathExplosion, NULL, NULL, &width, &height);
-
 }
 
 void enemyBoss::update()
@@ -83,17 +80,12 @@ void enemyBoss::update()
 		}
 	}
 
-	if (bossIsAlive == false)
-	{
-		deathExplosion;
-	}
 }
 
 void enemyBoss::draw()
 {
 	blit(bossTexture, x, y);
 
-	blit(deathExplosion, x, y);
 }
 
 int enemyBoss::getPositionX()

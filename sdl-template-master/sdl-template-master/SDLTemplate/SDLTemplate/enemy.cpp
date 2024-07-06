@@ -28,8 +28,6 @@ void enemy::start()
 	SDL_QueryTexture(enemyTexture, NULL, NULL, &width, &height);
 	s0und = SoundManager::loadSound("sound/334227__jradcoolness__laser.ogg");
 
-	deathExplosion = loadTexture("gfx/explosion.png");
-	SDL_QueryTexture(deathExplosion, NULL, NULL, &width, &height);
 }
 
 void enemy::update()
@@ -81,20 +79,13 @@ void enemy::update()
 		}
 	}
 
-	if (enemyIsAlive == false)
-	{
-		deathExplosion;
-
-		powerUps* power = new powerUps(this->getPositionX(), this->getPositionY(), 1, 1, 2);
-		getScene()->addGameObject(power);
-	}
+	
 }
 
 void enemy::draw()
 {
 	blit(enemyTexture, x, y);
 
-	blit(deathExplosion, x, y);
 }
 
 int enemy::getPositionX()
@@ -136,5 +127,8 @@ bool enemy::getEnemyIsAlive()
 void enemy::ifDead()
 {
 	enemyIsAlive = false;
+
+	powerUps* power = new powerUps(this->getPositionX(), this->getPositionY(), 1, 1, 2);
+	getScene()->addGameObject(power);
 }
 

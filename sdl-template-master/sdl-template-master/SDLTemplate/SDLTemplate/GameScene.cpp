@@ -58,7 +58,6 @@ void GameScene::update()
 		enemyBoss* Boss = new enemyBoss();
 		this->addGameObject(Boss);
 		Boss->setPlayerTarget(player_1);
-		collisionCheck();
 	}
 }
 
@@ -120,7 +119,6 @@ void GameScene::collisionCheck()
 					if (enemyCollision == 1)
 					{
 						despawn(currentEnemy);
-
 						score++;
 						break;
 					}
