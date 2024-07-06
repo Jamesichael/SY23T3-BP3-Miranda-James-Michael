@@ -33,7 +33,6 @@ void enemy::start()
 
 void enemy::update()
 {
-
 	x += direction_X * speed;
 	y += direction_Y * speed;
 	
@@ -87,7 +86,6 @@ void enemy::draw()
 
 	if (!enemyIsAlive) return
 	blit(deathExplosion, x, y);
-
 }
 
 int enemy::getPositionX()
@@ -110,15 +108,15 @@ int enemy::getHeight()
 	return height;
 }
 
-void enemy::setPlayerTarget(player* Player)
-{
-	playerTarget = Player;
-}
-
 void enemy::setPosition(int _x, int _y)
 {
 	this->x = _x;
 	this->y = _y;
+}
+
+void enemy::setPlayerTarget(player* target)
+{
+	playerTarget = target;
 }
 
 bool enemy::getEnemyIsAlive()

@@ -19,8 +19,6 @@ private:
 	int y;
 	int width;
 	int height;
-
 	SDL_Texture* setGameBackground;
-
 };
 

@@ -23,17 +23,14 @@ public:
 private:
 	player* player_1;
 	backGround* setGameBackground;
-	powerUps* spawnPowerUps;
-
 	float spawnTime;
 	float currentSpawnTime;
 	vector<enemy*> spawnedEnemies;
-
 	void spawnCheck();
 	void collisionCheck();
 	void spawn();
 	void despawn(enemy* _enemy);
-
+	void spawnBoss();
 	int score;
 
 };

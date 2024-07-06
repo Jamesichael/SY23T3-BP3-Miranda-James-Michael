@@ -16,12 +16,10 @@ public:
 	int getPositionY();
 	int getWidth();
 	int getHeight();
-	Side getSide();
 
 private:
 
 	SDL_Texture* powerUpTexture;
-	Side side;
 	int x;
 	int y;
 	float direction_X;

@@ -9,6 +9,7 @@
 #include "player.h"
 #include "powerUps.h"
 #include "scene.h"
+
 using namespace std;
 
 class enemy : public GameObject
@@ -23,8 +24,8 @@ public:
 	int getPositionY();
 	int getWidth();
 	int getHeight();
-	void setPlayerTarget(player* Player);
 	void setPosition(int _x, int _y);
+	void setPlayerTarget(player* target);
 	bool getEnemyIsAlive();
 	void ifDead();
 
@@ -33,7 +34,6 @@ private:
 	SDL_Texture* enemyTexture;
 	Mix_Chunk* s0und;
 	SDL_Texture* deathExplosion;
-	Mix_Chunk* deathSound;
 	player* playerTarget;
 	int x;
 	int y;

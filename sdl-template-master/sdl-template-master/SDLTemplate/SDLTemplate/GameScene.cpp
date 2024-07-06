@@ -55,10 +55,9 @@ void GameScene::update()
 
 	if (score == 5)
 	{
-		enemyBoss* Boss = new enemyBoss();
-		this->addGameObject(Boss);
-		Boss->setPlayerTarget(player_1);
+		spawnBoss();
 	}
+
 }
 
 void GameScene::spawnCheck()
@@ -81,7 +80,6 @@ void GameScene::spawn()
 {
 	enemy* Enemy = new enemy();
 	this->addGameObject(Enemy);
-	Enemy->setPlayerTarget(player_1);
 	Enemy->setPosition(100 + (rand() % 600), 30);
 	spawnedEnemies.push_back(Enemy);
 }
@@ -147,4 +145,12 @@ void GameScene::despawn(enemy* _enemy)
 		spawnedEnemies.erase(spawnedEnemies.begin() + index);
 		delete _enemy;
 	}
+}
+
+void GameScene::spawnBoss()
+{
+	enemyBoss* Boss = new enemyBoss();
+	this->addGameObject(Boss);
+	Boss->setPosition(100 + (rand() % 600), 30);
+	Boss->setPlayerTarget(player_1);
 }
