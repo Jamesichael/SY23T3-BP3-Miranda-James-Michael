@@ -36,27 +36,19 @@ private:
 	Mix_Chunk* s0und;
 	SDL_Texture* deathExplosion;
 	Mix_Chunk* deathSound;
-
 	player* playerTarget;
-
 	int x;
 	int y;
 	float direction_X;
 	float direction_Y;
-
 	int width;
 	int height;
-
 	int speed;
 	float reloadTime;
 	float currentReloadTime;
-
 	float directionChangeTime;
 	float currentDiractionChangeTime;
-
 	vector<bullet*> enemyBullets;
-
 	bool enemyIsAlive;
-
 };
 

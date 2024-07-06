@@ -86,6 +86,8 @@ void enemyBoss::draw()
 {
 	blit(bossTexture, x, y);
 
+	if (!bossIsAlive) return
+	blit(deathExplosion, x, y);
 }
 
 int enemyBoss::getPositionX()

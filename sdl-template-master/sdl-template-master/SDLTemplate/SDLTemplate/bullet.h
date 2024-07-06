@@ -29,7 +29,6 @@ private:
 
 	SDL_Texture* bulletTexture;
 	Side side;
-
 	int x;
 	int y;
 	int width;

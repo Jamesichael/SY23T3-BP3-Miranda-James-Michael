@@ -6,6 +6,7 @@
 #include "bullet.h"
 #include "util.h"
 #include <vector>
+#include "powerUps.h"
 
 using namespace std;
 
@@ -30,20 +31,16 @@ private:
 
 	SDL_Texture* playerTexture;
 	Mix_Chunk* s0und;
-
 	int x;
 	int y;
 	int width;
 	int height;
 	int speed;
 	int speedUp;
-
 	float reloadTime;
 	float currentReloadTime;
-
 	float reloadTimeG;
 	float currentReloadTimeG;
-
 	vector<bullet*> Bullets;
 	bool isAlive;
 };

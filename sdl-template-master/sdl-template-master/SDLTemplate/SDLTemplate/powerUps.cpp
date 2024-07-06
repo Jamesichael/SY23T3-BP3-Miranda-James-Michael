@@ -66,3 +66,8 @@ int powerUps::getHeight()
 	return height;
 }
 
+Side powerUps::getSide()
+{
+	return side;
+}
+

@@ -12,8 +12,7 @@ enemy::~enemy()
 void enemy::start()
 {
 	direction_X = 1;
-	direction_Y = 1;
-
+	direction_Y = 1; 
 	width = 0;
 	height = 0;
 	speed = 2;
@@ -28,6 +27,8 @@ void enemy::start()
 	SDL_QueryTexture(enemyTexture, NULL, NULL, &width, &height);
 	s0und = SoundManager::loadSound("sound/334227__jradcoolness__laser.ogg");
 
+	deathExplosion = loadTexture("gfx/explosion.png");
+	SDL_QueryTexture(enemyTexture, NULL, NULL, &width, &height);
 }
 
 void enemy::update()
@@ -78,13 +79,14 @@ void enemy::update()
 			break;
 		}
 	}
-
-	
 }
 
 void enemy::draw()
 {
 	blit(enemyTexture, x, y);
+
+	if (!enemyIsAlive) return
+	blit(deathExplosion, x, y);
 
 }
 
@@ -128,7 +130,7 @@ void enemy::ifDead()
 {
 	enemyIsAlive = false;
 
-	powerUps* power = new powerUps(this->getPositionX(), this->getPositionY(), 1, 1, 2);
+	powerUps* power = new powerUps(this->getPositionX(), this->getPositionY(), 1, 1, 2, Side::ENEMY_SIDE);
 	getScene()->addGameObject(power);
 }
 

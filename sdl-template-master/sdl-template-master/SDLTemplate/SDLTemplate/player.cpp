@@ -135,6 +135,7 @@ void player::update()
 
 		currentReloadTimeG = reloadTimeG;
 	}
+
 }
 
 void player::draw()
