@@ -29,6 +29,7 @@ void enemy::start()
 
 	deathExplosion = loadTexture("gfx/explosion.png");
 	SDL_QueryTexture(enemyTexture, NULL, NULL, &width, &height);
+	deathSound = SoundManager::loadSound("245372__quaker540__hq - explosion");
 }
 
 void enemy::update()
@@ -88,7 +89,8 @@ void enemy::draw()
 	blit(deathExplosion, x, y);
 }
 
-int enemy::getPositionX()
+
+int enemy:: getPositionX()
 {
 	return x;
 }
@@ -116,7 +118,7 @@ void enemy::setPosition(int _x, int _y)
 
 void enemy::setPlayerTarget(player* target)
 {
-	playerTarget = target;
+	target = playerTarget;
 }
 
 bool enemy::getEnemyIsAlive()

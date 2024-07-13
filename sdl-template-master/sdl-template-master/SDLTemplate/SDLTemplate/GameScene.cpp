@@ -28,11 +28,6 @@ void GameScene::start()
 
 	currentSpawnTime = 300;
 	spawnTime = 300;
-
-	for (int i = 0; i < 3; i++)
-	{
-		spawn();
-	}
 }
 
 void GameScene::draw()
@@ -56,6 +51,7 @@ void GameScene::update()
 	if (score == 5)
 	{
 		spawnBoss();
+
 	}
 
 }
@@ -82,6 +78,11 @@ void GameScene::spawn()
 	this->addGameObject(Enemy);
 	Enemy->setPosition(100 + (rand() % 600), 30);
 	spawnedEnemies.push_back(Enemy);
+
+	if (score > 5 && score < 7)
+	{
+		this->removeGameObject(Enemy);
+	}
 }
 
 void GameScene::collisionCheck()
@@ -149,8 +150,8 @@ void GameScene::despawn(enemy* _enemy)
 
 void GameScene::spawnBoss()
 {
-	enemyBoss* Boss = new enemyBoss();
+	Boss = new enemyBoss();
 	this->addGameObject(Boss);
-	Boss->setPosition(100 + (rand() % 600), 30);
+	Boss->setPosition(100 + (rand() % 1000), 30);
 	Boss->setPlayerTarget(player_1);
 }

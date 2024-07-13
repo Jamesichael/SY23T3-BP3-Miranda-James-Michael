@@ -34,6 +34,7 @@ private:
 	SDL_Texture* enemyTexture;
 	Mix_Chunk* s0und;
 	SDL_Texture* deathExplosion;
+	Mix_Chunk* deathSound;
 	player* playerTarget;
 	int x;
 	int y;
@@ -49,4 +50,3 @@ private:
 	vector<bullet*> enemyBullets;
 	bool enemyIsAlive;
 };
-

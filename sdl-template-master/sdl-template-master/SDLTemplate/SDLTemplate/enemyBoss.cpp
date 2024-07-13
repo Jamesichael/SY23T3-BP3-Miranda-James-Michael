@@ -18,10 +18,10 @@ void enemyBoss::start()
 	width = 0;
 	height = 0;
 	speed = 2;
-	reloadTime = 60;
+	reloadTime = 40;
 	currentReloadTime = 0;
 
-	directionChangeTime = (rand() % 50) + 25;
+	directionChangeTime = (rand() % 500) + 250;
 	currentDiractionChangeTime = 0;
 	bossIsAlive = true;
 

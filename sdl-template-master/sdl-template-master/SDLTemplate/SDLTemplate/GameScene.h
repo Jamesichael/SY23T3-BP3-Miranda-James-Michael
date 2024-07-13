@@ -30,8 +30,8 @@ private:
 	void collisionCheck();
 	void spawn();
 	void despawn(enemy* _enemy);
+	enemyBoss* Boss;
 	void spawnBoss();
 	int score;
 
 };
-
