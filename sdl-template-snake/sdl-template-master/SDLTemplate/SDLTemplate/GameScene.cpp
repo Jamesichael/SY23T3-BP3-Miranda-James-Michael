@@ -32,8 +32,8 @@ void GameScene::draw()
 	Scene::draw();
 
 	Scene::draw();
-	drawText(0, 0, 255, 255, 255, TEXT_CENTER, "POINTS: %04d", score);
-	drawText(0, 10, 255, 255, 255, TEXT_CENTER, "HIGHSCORE: %04d", highScore);
+	drawText(0, 0, 255, 255, 255, TEXT_CENTER, "POINTS: %01d", score);
+	drawText(0, 10, 255, 255, 255, TEXT_CENTER, "HIGHSCORE: %01d", highScore);
 
 	if (player->getIsAlive() == false)
 	{
@@ -62,7 +62,6 @@ void GameScene::eatFruitCollisionCheck()
 {
 	for (int i = 0; i < objects.size(); i++)
 	{
-
 		if (player != NULL)
 		{
 			int collision = checkCollision(player->getSnakeX(), player->getSnakeY(), player->getSnakeWidth(),player->getSnakeHeight(),

@@ -128,16 +128,6 @@ void Snake::grow()
 
 void Snake::initialize()
 {
-	width = 1;
-	height = 1;
-	length = 5;
-	speed = 1;
-	snakeDirection.x = 3;
-	snakeDirection.y = 0;
-	gridSize = 3;
-
-	isAlive = true;
-
 	snakePosition[0].x = 200;
 	snakePosition[0].y = 200;
 }
