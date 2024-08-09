@@ -1,100 +1,172 @@
 #include "snake.h"
 #include "Scene.h"
+#include "util.h"
 
-snake::snake(int _dirX, int _dirY, int _speed)
+void Snake::start()
 {
-	this->directionX = _dirX;
-	this->directionY = _dirY;
-	this->speed = _speed;
-	
+	texture = loadTexture("snake_graphics/Graphics/body_vertical.png");
+
+	width = 1;
+	height = 1;
+	length = 5;
+	speed = 1;
+	snakeDirection.x = 3;
+	snakeDirection.y = 0;
+	gridSize = 3;
+
+	isAlive = true;
+
+	SDL_QueryTexture(texture, NULL, NULL, &width, &height);
 }
 
-void snake::start()
+void Snake::update()
 {
-
-	width = 0;
-	height = 0;
-
-	snakeBody = loadTexture("snake_graphics/Graphics/body_vertical.png");
-}
-
-void snake::update()
-{
-	for (int i = bodyPart.size() - 1; i > 0; i--) 
-	{
-		bodyPart[i].x = bodyPart[i - 1].x;
-		bodyPart[i].y = bodyPart[i - 1].y;
-	}
-
-	bodyPart[0].x += directionX * speed;
-	
 	if (app.keyboard[SDL_SCANCODE_W])
 	{
-		bodyPart[0].y += -directionY * speed;
-		bodyPart[0].x -= directionX * speed;
+		if (snakeDirection.y == 0)
+		{
+			snakeDirection.x = 0;
+			snakeDirection.y = -(gridSize);
+		}
+	}
+
+	if (app.keyboard[SDL_SCANCODE_S])
+	{
+		if (snakeDirection.y == 0)
+		{
+			snakeDirection.x = 0;
+			snakeDirection.y = gridSize;
+		}
 	}
 	if (app.keyboard[SDL_SCANCODE_A])
 	{
-		bodyPart[0].x += -directionX * speed;
-		bodyPart[0].x += -directionX * speed;
-	}
-	if (app.keyboard[SDL_SCANCODE_S])
-	{
-		bodyPart[0].x += -directionX * speed;
-		bodyPart[0].y += directionY * speed;
+		if (snakeDirection.x == 0)
+		{
+			snakeDirection.x = -(gridSize);
+			snakeDirection.y = 0;
+		}
 	}
 	if (app.keyboard[SDL_SCANCODE_D])
 	{
-		bodyPart[0].x += directionX * speed;
+		if (snakeDirection.x == 0)
+		{
+			snakeDirection.x = gridSize;
+			snakeDirection.y = 0;
+		}
 	}
 }
 
-void snake::draw()
+void Snake::draw()
 {
-	for (int i = 0; i < bodyPart.size(); i++)
+	if (!isAlive) 
+		return;
+		move();
+
+	if (collisionWall()) 
 	{
-		blit(snakeBody, bodyPart[i].x, bodyPart[i].y);
+		isAlive = false;
+	}
+	if (bodyCollision())
+	{
+		isAlive = false;
+	}
+
+	for (int i = 0; i < length; i++)
+	{
+		blit(texture, snakePosition[i].x, snakePosition[i].y);
 	}
 }
 
-void snake::addBodyPart(int x, int y)
+
+void Snake::move()
 {
-	part.x = x;
-	part.y = y;
-	bodyPart.push_back(part);
+	for (int i = length - 1; i > 0; i--)
+	{
+		snakePosition[i].x = snakePosition[i - 1].x;
+		snakePosition[i].y = snakePosition[i - 1].y;
+	}
+	snakePosition[0].x = snakePosition[0].x + snakeDirection.x;
+	snakePosition[0].y = snakePosition[0].y + snakeDirection.y;
 }
 
-int snake::getX()
+bool Snake::collisionWall()
 {
-	return bodyPart[0].x;
+	if (snakePosition[0].x < 0) 
+		return true;
+	if (snakePosition[0].x > SCREEN_WIDTH) 
+		return true;
+	if (snakePosition[0].y < 0) 
+		return true;
+	if (snakePosition[0].y > SCREEN_HEIGHT) 
+		return true;
+	return false;
 }
 
-int snake::getY()
+bool Snake::bodyCollision()
 {
-	return bodyPart[0].y;
+
+	for (int i = 5; i < length; i++)
+	{
+		int collision = checkCollision(snakePosition[0].x, snakePosition[0].y, 5, 5,
+			snakePosition[i].x, snakePosition[i].y, 5, 5);
+
+		if (collision == 1)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
-int snake::getDirectionX()
+
+void Snake::grow()
 {
-	return directionX;
+	snakePosition[length].x = snakePosition[length - 1].x;
+	snakePosition[length].y = snakePosition[length - 1].y;
+	length += (gridSize * 2);
 }
 
-int snake::getDirectionY()
+void Snake::initialize()
 {
-	return directionY;
+	width = 1;
+	height = 1;
+	length = 5;
+	speed = 1;
+	snakeDirection.x = 3;
+	snakeDirection.y = 0;
+	gridSize = 3;
+
+	isAlive = true;
+
+	snakePosition[0].x = 200;
+	snakePosition[0].y = 200;
 }
 
-int snake::getWidth()
+int Snake::getSnakeX()
+{
+	return snakePosition[0].x;
+}
+
+int Snake::getSnakeY()
+{
+	return snakePosition[0].y;
+}
+
+int Snake::getSnakeWidth()
 {
 	return width;
 }
 
-int snake::getHeight()
+int Snake::getSnakeHeight()
 {
 	return height;
 }
-
-bool snake::getIsAlive()
+bool Snake::getIsAlive()
 {
 	return isAlive;
+}
+
+int Snake::getSnakeLength()
+{
+	return length;
 }

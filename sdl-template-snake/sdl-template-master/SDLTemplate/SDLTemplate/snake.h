@@ -1,45 +1,47 @@
 #pragma once
 #include "GameObject.h"
-#include <vector>
 #include "common.h"
 #include "draw.h"
+#include "gridSystem.h"
 #include "util.h"
-#include "Scene.h"
-#include "fruit.h"
+#include <vector>
 
 using namespace std;
 
-struct snakeSegment
-{
-    int x;
-    int y;
-};
-
-class snake : public GameObject
+class Snake : public GameObject
 {
 public:
-    snake(int _dirX, int _dirY, int _speed);
+
     void start();
     void update();
     void draw();
-    void addBodyPart(int x, int y);
-    int getX();
-    int getY();
-    int getDirectionX();
-    int getDirectionY();
-    int getWidth();
-    int getHeight();
+
+    coordinate snakePosition[1000];
+    coordinate snakeDirection;
+
+    void move();
+    bool collisionWall();
+    bool bodyCollision();
+    void grow();
+    void initialize();
+
+    int getSnakeX();
+    int getSnakeY();
+    int getSnakeWidth();
+    int getSnakeHeight();
+
     bool getIsAlive();
-    
-    snakeSegment part;
+    int getSnakeLength();
 
 private:
-    vector<snakeSegment> bodyPart;
-    SDL_Texture *snakeBody;
-    int directionX;
-    int directionY;
+    SDL_Texture* texture;
+
     int width;
     int height;
     int speed;
+    int length;
+
     bool isAlive;
+
+    int gridSize;
 };

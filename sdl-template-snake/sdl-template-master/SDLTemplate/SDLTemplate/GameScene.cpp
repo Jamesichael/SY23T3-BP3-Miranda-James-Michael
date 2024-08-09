@@ -7,23 +7,16 @@ GameScene::GameScene()
 	setGameBackground = new backGround();
 	this->addGameObject(setGameBackground);
 
-	player = new snake(10, 10, 1);
-
-	player->addBodyPart(100, 50);
-	player->addBodyPart(60, 50);
-	player->addBodyPart(30, 50);
-
+	player = new Snake();
 	this->addGameObject(player);
 
-	fruitSpawn = new fruit(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+	fruitSpawn = new fruit();
 	this->addGameObject(fruitSpawn);
-
-	score = 0;
 }
 
 GameScene::~GameScene()
 {
-	delete player;
+	
 }
 
 void GameScene::start()
@@ -38,39 +31,57 @@ void GameScene::draw()
 {
 	Scene::draw();
 
-	drawText(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 0, 0, 0, TEXT_CENTER, "POINTS: ", score);
+	Scene::draw();
+	drawText(0, 0, 255, 255, 255, TEXT_CENTER, "POINTS: %04d", score);
+	drawText(0, 10, 255, 255, 255, TEXT_CENTER, "HIGHSCORE: %04d", highScore);
+
+	if (player->getIsAlive() == false)
+	{
+		drawText(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 255, 255, 255, TEXT_CENTER, "GAME OVER!");
+		drawText(SCREEN_WIDTH / 2, (SCREEN_HEIGHT / 2) + 2, 255, 255, 255, TEXT_CENTER, "YOUR POINTS ARE: ");
+		pointSystem();
+
+		drawText(SCREEN_WIDTH / 2, (SCREEN_HEIGHT / 2) + 4, 255, 255, 255, TEXT_CENTER, "PRESS R TO RESTART");
+		if (app.keyboard[SDL_SCANCODE_R])
+		{
+			player->initialize();
+			GameScene::start();
+		}
+		score = 0;
+	}
 
 }
 
 void GameScene::update()
 {
 	Scene::update();
+	eatFruitCollisionCheck();
+}
 
-	//plyer eats fruit collisiom
+void GameScene::eatFruitCollisionCheck()
+{
 	for (int i = 0; i < objects.size(); i++)
 	{
+
 		if (player != NULL)
 		{
-			int collision = checkCollision(fruitSpawn->getPositionX(), fruitSpawn->getPositionY(), fruitSpawn->getWidth(), fruitSpawn->getHeight(),
-				player->getDirectionX(), player->getDirectionY(), player->getWidth(), player->getHeight());
+			int collision = checkCollision(player->getSnakeX(), player->getSnakeY(), player->getSnakeWidth(),player->getSnakeHeight(),
+				fruitSpawn->getFruitX(), fruitSpawn->getFruitY(), fruitSpawn->getFruitWidth(), fruitSpawn->getFruitHeight());
 
 			if (collision == 1)
 			{
-				fruitSpawn->setPosition(rand() % 840 + 1, rand() % 560 + 1, rand() % 840 + 1, rand() % 560 + 1);
-				player->addBodyPart(10, 50);
+				player->grow();
+				fruitSpawn->newFruitPosition();
 				score++;
 			}
 		}
 	}
-
-	//int snakeBodyCollision = checkCollision(player->);
-
-	//wall collisions
-	int wallCollision = checkCollision(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT,
-	player->getX(), player->getY(), player->getWidth(), player->getHeight());
-
-	if (wallCollision == 1)
+}
+void GameScene::pointSystem()
+{
+	if (score > highScore)
 	{
-		drawText(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 0, 0, 0, TEXT_CENTER, "RESTART?");
+		highScore = score;
 	}
 }
+

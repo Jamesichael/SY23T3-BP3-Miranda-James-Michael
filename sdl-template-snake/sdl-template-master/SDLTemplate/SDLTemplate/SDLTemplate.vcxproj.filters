@@ -51,6 +51,9 @@
     <ClCompile Include="fruit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gridSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="backGround.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -99,6 +102,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="fruit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gridSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="backGround.h">

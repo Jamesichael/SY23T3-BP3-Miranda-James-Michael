@@ -24,6 +24,7 @@
     <ClCompile Include="fruit.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="gridSystem.cpp" />
     <ClCompile Include="init.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
@@ -42,6 +43,7 @@
     <ClInclude Include="fruit.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="gridSystem.h" />
     <ClInclude Include="init.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="main.h" />

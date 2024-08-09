@@ -1,32 +1,34 @@
 #pragma once
 #include "GameObject.h"
+#include "gridSystem.h"
 #include "common.h"
 #include "draw.h"
+#include "SoundManager.h"
 #include "util.h"
+#include <vector>
+
 
 class fruit : public GameObject
 {
 public:
-	fruit(int _x, int _y, int _width, int _height);
+    ~fruit();
+    void start();
+    void update();
+    void draw();
 
-	void start();
-	void update();
-	void draw();
-
-	int getPositionX();
-	int getPositionY();
-	int getWidth();
-	int getHeight();
-
-	void setPosition(int _x, int _y, int _width, int _height);
+    int getFruitX();
+    int getFruitY();
+    int getFruitWidth();
+    int getFruitHeight();
+    void newFruitPosition();
 
 private:
+    SDL_Texture* fruitTexture;
 
-	SDL_Texture* fruitTexture;
-	int x;
-	int y;
-	int width;
-	int height;
-
+    int fruitX;
+    int fruitY;
+    int fruitWidth;
+    int fruitHeight;
 };
+
 

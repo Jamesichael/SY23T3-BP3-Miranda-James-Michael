@@ -1,17 +1,20 @@
 #include "fruit.h"
 
-fruit::fruit(int _x, int _y, int _width, int _height)
+fruit::~fruit()
 {
-	this->x = _x;
-	this->y = _y;
-	this->width = _width;
-	this->height = _height;
+
 }
 
 void fruit::start()
 {
 	fruitTexture = loadTexture("snake_graphics/Graphics/apple.png");
-	SDL_QueryTexture(fruitTexture, NULL, NULL, &width, &height);
+
+	fruitWidth = 20;
+	fruitHeight = 20;
+	fruitX = 400;
+	fruitY = 380;
+
+	SDL_QueryTexture(fruitTexture, NULL, NULL, &fruitWidth, &fruitHeight);
 }
 
 void fruit::update()
@@ -21,33 +24,31 @@ void fruit::update()
 
 void fruit::draw()
 {
-	blit(fruitTexture, x, y);
+	blit(fruitTexture, fruitX, fruitY);
 }
 
-int fruit::getPositionX()
+int fruit::getFruitX()
 {
-	return x;
+	return fruitX;
 }
 
-int fruit::getPositionY()
+int fruit::getFruitY()
 {
-	return y;
+	return fruitY;
 }
 
-int fruit::getWidth()
+int fruit::getFruitWidth()
 {
-	return width;
+	return fruitWidth;
 }
 
-int fruit::getHeight()
+int fruit::getFruitHeight()
 {
-	return height;
+	return fruitHeight;
 }
 
-void fruit::setPosition(int _x, int _y, int _width, int _height)
+void fruit::newFruitPosition()
 {
-	this->x = _x;
-	this->y = _y;
-	this->width = _width;
-	this->height = _height;
+	fruitX = (rand() % 700);
+	fruitY = (rand() % 380);
 }
