@@ -18,7 +18,7 @@ struct snakeSegment
 class snake : public GameObject
 {
 public:
-    snake(int _x, int _y, int _dirX, int _dirY, int _speed);
+    snake(int _dirX, int _dirY, int _speed);
     void start();
     void update();
     void draw();
@@ -31,12 +31,11 @@ public:
     int getHeight();
     bool getIsAlive();
     
+    snakeSegment part;
 
 private:
     vector<snakeSegment> bodyPart;
     SDL_Texture *snakeBody;
-    int x;
-	int y;
     int directionX;
     int directionY;
     int width;

@@ -7,7 +7,7 @@ GameScene::GameScene()
 	setGameBackground = new backGround();
 	this->addGameObject(setGameBackground);
 
-	player = new snake(10, 10, 10, 10, 1);
+	player = new snake(10, 10, 1);
 
 	player->addBodyPart(100, 50);
 	player->addBodyPart(60, 50);
@@ -49,7 +49,6 @@ void GameScene::update()
 	//plyer eats fruit collisiom
 	for (int i = 0; i < objects.size(); i++)
 	{
-
 		if (player != NULL)
 		{
 			int collision = checkCollision(fruitSpawn->getPositionX(), fruitSpawn->getPositionY(), fruitSpawn->getWidth(), fruitSpawn->getHeight(),
@@ -63,6 +62,8 @@ void GameScene::update()
 			}
 		}
 	}
+
+	//int snakeBodyCollision = checkCollision(player->);
 
 	//wall collisions
 	int wallCollision = checkCollision(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT,

@@ -1,10 +1,8 @@
 #include "snake.h"
 #include "Scene.h"
 
-snake::snake(int _x, int _y,int _dirX, int _dirY, int _speed)
+snake::snake(int _dirX, int _dirY, int _speed)
 {
-	this->x = _x;
-	this->y = _y;
 	this->directionX = _dirX;
 	this->directionY = _dirY;
 	this->speed = _speed;
@@ -61,21 +59,19 @@ void snake::draw()
 
 void snake::addBodyPart(int x, int y)
 {
-	snakeSegment part;
 	part.x = x;
 	part.y = y;
 	bodyPart.push_back(part);
-
 }
 
 int snake::getX()
 {
-	return x;
+	return bodyPart[0].x;
 }
 
 int snake::getY()
 {
-	return y;
+	return bodyPart[0].y;
 }
 
 int snake::getDirectionX()
