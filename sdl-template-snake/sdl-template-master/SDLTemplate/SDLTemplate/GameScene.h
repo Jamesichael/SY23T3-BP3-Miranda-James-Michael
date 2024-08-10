@@ -2,12 +2,11 @@
 #include "Scene.h"
 #include "GameObject.h"
 #include <vector>
-#include "text.h"
 #include "util.h"
 #include "snake.h"
 #include "fruit.h"
 #include "backGround.h"
-#include <fstream>
+#include "text.h"
 
 using namespace std;
 

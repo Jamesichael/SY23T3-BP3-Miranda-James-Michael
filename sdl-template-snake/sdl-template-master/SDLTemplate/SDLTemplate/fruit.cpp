@@ -7,7 +7,7 @@ fruit::~fruit()
 
 void fruit::start()
 {
-	fruitTexture = loadTexture("snake_graphics/Graphics/apple.png");
+	fruitTexture = loadTexture("snake_graphics/apple.png");
 
 	fruitWidth = 20;
 	fruitHeight = 20;

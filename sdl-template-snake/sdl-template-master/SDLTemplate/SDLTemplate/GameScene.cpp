@@ -12,6 +12,8 @@ GameScene::GameScene()
 
 	fruitSpawn = new fruit();
 	this->addGameObject(fruitSpawn);
+
+	score = 0;
 }
 
 GameScene::~GameScene()
@@ -31,17 +33,16 @@ void GameScene::draw()
 {
 	Scene::draw();
 
-	Scene::draw();
-	drawText(0, 0, 255, 255, 255, TEXT_CENTER, "POINTS: %01d", score);
-	drawText(0, 10, 255, 255, 255, TEXT_CENTER, "HIGHSCORE: %01d", highScore);
+	drawText(0, 0, 0, 0, 0, TEXT_CENTER, "POINTS: %03d", score);
+	drawText(0, 10, 0, 0, 0, TEXT_CENTER, "HIGHSCORE: %03d", highScore);
 
 	if (player->getIsAlive() == false)
 	{
-		drawText(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 255, 255, 255, TEXT_CENTER, "GAME OVER!");
-		drawText(SCREEN_WIDTH / 2, (SCREEN_HEIGHT / 2) + 2, 255, 255, 255, TEXT_CENTER, "YOUR POINTS ARE: ");
+		drawText(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 0, 0, 0, TEXT_CENTER, "GAME OVER!");
+		drawText(SCREEN_WIDTH / 2, (SCREEN_HEIGHT / 2) + 2, 0, 0, 0, TEXT_CENTER, "YOUR POINTS ARE: ");
 		pointSystem();
 
-		drawText(SCREEN_WIDTH / 2, (SCREEN_HEIGHT / 2) + 4, 255, 255, 255, TEXT_CENTER, "PRESS R TO RESTART");
+		drawText(SCREEN_WIDTH / 2, (SCREEN_HEIGHT / 2) + 6, 0, 0, 0, TEXT_CENTER, "PRESS R TO RESTART");
 		if (app.keyboard[SDL_SCANCODE_R])
 		{
 			player->initialize();

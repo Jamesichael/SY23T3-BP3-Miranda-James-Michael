@@ -1,7 +1,7 @@
 #include "backGround.h"
 void backGround::start()
 {
-	gameBackground = loadTexture("snake_graphics/Graphics/background.png");
+	gameBackground = loadTexture("snake_graphics/background.png");
 }
 
 void backGround::update()

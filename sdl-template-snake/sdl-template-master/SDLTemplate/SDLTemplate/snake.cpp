@@ -4,7 +4,7 @@
 
 void Snake::start()
 {
-	texture = loadTexture("snake_graphics/Graphics/body_vertical.png");
+	texture = loadTexture("snake_graphics/body_vertical.png");
 
 	width = 1;
 	height = 1;
@@ -123,7 +123,6 @@ void Snake::grow()
 {
 	snakePosition[length].x = snakePosition[length - 1].x;
 	snakePosition[length].y = snakePosition[length - 1].y;
-	length += (gridSize * 2);
 }
 
 void Snake::initialize()
