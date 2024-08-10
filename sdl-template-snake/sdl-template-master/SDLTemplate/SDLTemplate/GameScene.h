@@ -1,7 +1,6 @@
 #pragma once
 #include "Scene.h"
 #include "GameObject.h"
-#include <vector>
 #include "util.h"
 #include "snake.h"
 #include "fruit.h"
