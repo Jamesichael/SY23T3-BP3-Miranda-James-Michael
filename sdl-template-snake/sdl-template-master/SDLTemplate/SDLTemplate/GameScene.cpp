@@ -33,16 +33,16 @@ void GameScene::draw()
 {
 	Scene::draw();
 
-	drawText(0, 0, 0, 0, 0, TEXT_CENTER, "POINTS: %03d", score);
-	drawText(0, 10, 0, 0, 0, TEXT_CENTER, "HIGHSCORE: %03d", highScore);
+	drawText(0, 490, 0, 0, 0, TEXT_LEFT, "POINTS: %03d", score);
+	drawText(0, 530, 0, 0, 0, TEXT_LEFT, "HIGHSCORE: %03d", highScore);
 
 	if (player->getIsAlive() == false)
 	{
-		drawText(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 0, 0, 0, TEXT_CENTER, "GAME OVER!");
-		drawText(SCREEN_WIDTH / 2, (SCREEN_HEIGHT / 2) + 2, 0, 0, 0, TEXT_CENTER, "YOUR POINTS ARE: ");
+		drawText(SCREEN_WIDTH / 2, (SCREEN_HEIGHT / 2) - 50, 0, 0, 0, TEXT_CENTER, "GAME OVER!");
+		drawText(SCREEN_WIDTH / 2, (SCREEN_HEIGHT / 2) + 10, 0, 0, 0, TEXT_CENTER, "YOUR HIGHSCORE IS: %03d", highScore);
 		pointSystem();
 
-		drawText(SCREEN_WIDTH / 2, (SCREEN_HEIGHT / 2) + 6, 0, 0, 0, TEXT_CENTER, "PRESS R TO RESTART");
+		drawText(SCREEN_WIDTH / 2, (SCREEN_HEIGHT / 2) + 50, 0, 0, 0, TEXT_CENTER, "PRESS R TO RESTART");
 		if (app.keyboard[SDL_SCANCODE_R])
 		{
 			player->initialize();
